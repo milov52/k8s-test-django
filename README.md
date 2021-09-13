@@ -1,2 +1,2 @@
-# test-kuber-fast-deploy
+# Test Kubernetes Fast Deploy
 

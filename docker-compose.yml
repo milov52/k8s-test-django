@@ -1,0 +1,26 @@
+version: "3"
+   
+services:
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=lucky_draws
+      - POSTGRES_USER=lucky_draws
+      - POSTGRES_PASSWORD=Sunrise23
+
+  web:
+    build: backend_main_django
+    image: django_app
+    volumes:
+      - ./backend_main_django:/code
+    env_file: 
+      - ./.env-django
+    ports:
+      - 80:80
+    depends_on:
+      - db
+
+volumes:
+  db_data:
