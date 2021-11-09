@@ -1,14 +1,14 @@
 version: "3"
-   
+
 services:
   db:
     image: postgres:12.0-alpine
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=test_k8s
-      - POSTGRES_USER=test_k8s
-      - POSTGRES_PASSWORD=OwOtBep9Frut
+      POSTGRES_DB: test_k8s
+      POSTGRES_USER: test_k8s
+      POSTGRES_PASSWORD: OwOtBep9Frut
 
   web:
     build: backend_main_django
@@ -16,8 +16,8 @@ services:
     volumes:
       - ./backend_main_django:/code
     environment: 
-      - SECRET_KEY=REPLACE_ME
-      - DEBUG=True
+      SECRET_KEY: REPLACE_ME
+      DEBUG: 'TRUE'
     ports:
       - 127.0.0.1:8080:80
     depends_on:
