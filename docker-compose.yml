@@ -6,17 +6,18 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=lucky_draws
-      - POSTGRES_USER=lucky_draws
-      - POSTGRES_PASSWORD=Sunrise23
+      - POSTGRES_DB=test_k8s
+      - POSTGRES_USER=test_k8s
+      - POSTGRES_PASSWORD=OwOtBep9Frut
 
   web:
     build: backend_main_django
     image: django_app
     volumes:
       - ./backend_main_django:/code
-    env_file: 
-      - ./.env-django
+    environment: 
+      - SECRET_KEY=REPLACE_ME
+      - DEBUG=True
     ports:
       - 80:80
     depends_on:
