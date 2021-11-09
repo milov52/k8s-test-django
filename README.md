@@ -1,4 +1,4 @@
-# Test Kubernetes Fast Deploy
+# Django site
 
 Докеризированный сайт на Django для экспериментов с Kubernetes.
 
