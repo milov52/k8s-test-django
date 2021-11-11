@@ -14,3 +14,4 @@ COPY unit_config.json /docker-entrypoint.d/
 COPY . /code/
 RUN SECRET_KEY=empty python manage.py collectstatic --noinput
 EXPOSE 80
+VOLUME ["\media"]
