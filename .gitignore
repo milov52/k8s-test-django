@@ -1,22 +1,4 @@
-env
-venv
-.python-version
-.venv
-.virtualenv
-.idea
-.git
-db.sqlite3
-__pycache__
-*.pytest_cache
-postgres-data
-*.env
-static
-media
-*.*.pyc
-.vscode
-*.ipynb
-google-credentials*.json
-*.txt
-!requirements.txt
-*.zip
-.env*
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
