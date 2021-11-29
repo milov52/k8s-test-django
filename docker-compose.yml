@@ -6,9 +6,9 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: test_k8s
-      POSTGRES_USER: test_k8s
-      POSTGRES_PASSWORD: OwOtBep9Frut
+      POSTGRES_DB: ${POSTGRES_DB-test_k8s}
+      POSTGRES_USER: ${POSTGRES_USER-test_k8s}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-OwOtBep9Frut}
 
   web:
     build: backend_main_django
@@ -16,8 +16,10 @@ services:
     volumes:
       - ./backend_main_django:/code
     environment: 
-      SECRET_KEY: REPLACE_ME
-      DEBUG: 'TRUE'
+      SECRET_KEY: ${WEB_SECRET_KEY-REPLACE_ME}
+      DEBUG: ${WEB_DEBUG-TRUE}
+      DATABASE_URL: ${WEB_DATABASE_URL-postgres://test_k8s:OwOtBep9Frut@db:5432/test_k8s}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS-127.0.0.1,localhost}
     ports:
       - 127.0.0.1:8080:80
     depends_on:
