@@ -19,7 +19,7 @@ services:
       SECRET_KEY: ${WEB_SECRET_KEY-REPLACE_ME}
       DEBUG: ${WEB_DEBUG-TRUE}
       DATABASE_URL: ${WEB_DATABASE_URL-postgres://test_k8s:OwOtBep9Frut@db:5432/test_k8s}
-      ALLOWED_HOSTS: ${ALLOWED_HOSTS-127.0.0.1,localhost}
+      ALLOWED_HOSTS: ${WEB_ALLOWED_HOSTS-127.0.0.1,localhost}
     ports:
       - 127.0.0.1:8080:80
     depends_on:
