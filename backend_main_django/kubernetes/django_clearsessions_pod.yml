@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: clearsessions
+  labels:
+    name: django-app
+    component: clearsessions
+spec:
+  template:
+    metadata:
+      labels:
+        name: django-app
+        component: clearsessions
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: djnago
+          image: milov52/django_app
+          imagePullPolicy: IfNotPresent
+          command:
+            - ./manage.py
+            - clearsessions
