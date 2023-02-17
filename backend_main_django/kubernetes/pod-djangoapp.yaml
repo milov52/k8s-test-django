@@ -21,20 +21,18 @@ spec:
                 name: django-config
           ports:
           - containerPort: 80
-            name: django-web
+            name: django-port
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: django
+  name: django-service
 spec:
   selector:
     app: django-app
   ports:
-    - name : django-listiner
-      protocol: TCP
-      port: 80
-      targetPort: django-web
-      nodePort: 30007
-  type: NodePort
+    - protocol: TCP
+      port: 59777
+      targetPort: django-port
+
