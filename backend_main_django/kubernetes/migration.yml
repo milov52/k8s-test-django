@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrations
+  labels:
+    name: django-app
+    component: migrations
+spec:
+  activeDeadlineSeconds: 120
+  template:
+    metadata:
+      labels:
+        name: django-app
+        component: migrations
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrations
+          image: milov52/django_app
+          imagePullPolicy: IfNotPresent
+          command:
+            - python
+            - manage.py
+            - migrate
