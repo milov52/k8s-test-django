@@ -35,4 +35,3 @@ spec:
     - protocol: TCP
       port: 59777
       targetPort: django-port
-

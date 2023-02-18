@@ -6,7 +6,6 @@ metadata:
     name: django-app
     component: migrations
 spec:
-  activeDeadlineSeconds: 120
   template:
     metadata:
       labels:

@@ -7,5 +7,5 @@ metadata:
 data:
   DEBUG: "True"
   SECRET_KEY: "REPLACE_ME"
-  DATABASE_URL: "postgres://test_k8s:OwOtBep9Frut@192.168.31.195:5433/test_k8s"
+  DATABASE_URL: "postgres://test_k8s:OwOtBep9Frut@db-postgresql-0:5432/test_k8s"
   ALLOWED_HOSTS: "127.0.0.1,localhost,star-burger.test"
