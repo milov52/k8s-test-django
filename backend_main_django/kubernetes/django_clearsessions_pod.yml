@@ -4,6 +4,7 @@ metadata:
   name: clearsessions
 spec:
   schedule: "0 0 13 * 5"
+  startingDeadlineSeconds: 11
   jobTemplate:
     spec:
       template:
