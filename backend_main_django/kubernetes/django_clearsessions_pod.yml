@@ -5,6 +5,7 @@ metadata:
 spec:
   schedule: "0 0 13 * 5"
   startingDeadlineSeconds: 11
+  ttlSecondsAfterFinished: 20
   jobTemplate:
     spec:
       template:
