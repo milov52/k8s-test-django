@@ -41,10 +41,10 @@ $ docker-compose run web ./manage.py createsuperuser
 
 ```$ minikube start ```
 
-В директории kubernetes внесите данные переменных окружения в манифест configmap, указав необходимые значения для django
-Затем выполните команду для создания ConfigMap в вашем кластере minikube
+В директории kubernetes внесите данные переменных окружения в манифест secrets, указав необходимые значения для django
+Затем выполните команду для создания Secrets в вашем кластере minikube
 
-```$ kubectl apply -f configmap.yml ```
+```$ kubectl apply -f secrets.yaml ```
 
 ### Создание pods (с помощью deployment) и services
 Для запуска pods и services из директории kubernetes запустите манифест djangoapp-deploy.yaml командой
