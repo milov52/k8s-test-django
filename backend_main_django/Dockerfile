@@ -2,7 +2,6 @@ FROM nginx/unit:1.25.0-python3.9
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN mkdir /code
 WORKDIR /code
 COPY requirements.txt /code/
 RUN apt update && apt install -y python3-pip                                  \
