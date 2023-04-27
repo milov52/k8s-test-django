@@ -13,6 +13,9 @@ spec:
           containers:
           - name: django-app
             image: milov52/django_app
+            envFrom:
+              - secretRef:
+                  name: django-config
             imagePullPolicy: IfNotPresent
             command:
             - ./manage.py
