@@ -67,7 +67,7 @@ $ helm install db my-repo/postgresql
 После создания базы данных перейти в клиент командой
 
 ```
-run db-postgresql-client --rm --tty -i --restart='Never' --namespace default 
+kubectl run db-postgresql-client --rm --tty -i --restart='Never' --namespace default 
         --image docker.io/bitnami/postgresql:15.2.0-debian-11-r0 --env="PGPASSWORD=$POSTGRES_PASSWORD" \
         --command -- psql --host db-postgresql -U postgres -d postgres -p 5432
 ```
@@ -108,4 +108,45 @@ postgres=# GRANT postgres to test_k8s
 ```$ kubectl apply -f django-clearsessions_pod.yml ```
 
 в настройках манифеста можно установить требуемый график удаления сессий
+
+## Запуск в кластере kubernetes
+
+### База данных PostgreSQL
+Установить через helm postgresql с помощью Helm-чарта с указанием storage class
+
+1. [Установите менеджер пакетов Kubernetes Helm](https://helm.sh/ru/docs/intro/install).
+2. Создать файл volumes, где прописать все креды для базы данных, а также тип storageClass для хранения данных
+3. Выполнить команду
+
+	`helm install postgresql-dev -f values.yaml oci://registry-1.docker.io/bitnamicharts/postgresql`
+
+## Установка Nginx ingress контроллера через helm
+
+Для установки [Helm-чарта](https://helm.sh/docs/topics/charts/) с Ingress-контроллером NGINX выполните команду:
+
+`helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \ helm repo update && \ helm install ingress-nginx ingress-nginx/ingress-nginx`
+
+Получить ip адрес балансировщика с помощью команды
+
+`kubectl get svc`
+
+Прописать этот адрес у регистратора доменных имен с помощью A записи
+
+## Установить приложение django
+
+Установка через kubectl посредство выполнения манифестов
+
+`kubectl apply -f secrets.yml -f djangoapp-deploy.yml -f ingres.yml -f migration.yml` 
+
+После этого по зарегистрированногому доменному имени будет доступен сайт на 80 порту
+
+## Установка менеджера сертификатов и получение сертификата для сайта
+
+1. Установить менеджер сертификатов через команду
+
+`kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml`
+
+2. Выполнить манифест issuer.yaml командой для создания ClusterIssuer
+
+`kubectl apply -f issuer.yaml`
 
