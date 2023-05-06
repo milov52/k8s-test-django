@@ -33,5 +33,5 @@ spec:
     app: django-app
   ports:
     - protocol: TCP
-      port: 59777
-      targetPort: django-port
+      port: 80
+      targetPort: 80
